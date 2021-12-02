@@ -19,6 +19,15 @@ export default function TextForm(props) {
     let handleOnChange = (event) => {
         //console.log(text)
         let txt = event.target.value
+        // setText(txt)
+        // let numberOfWords = txt.trim().split(/\s+/).length
+        // let numberOfChars = txt.trim().length
+        // setNumWords(numberOfWords)
+        // setNumChars(numberOfChars)
+        updateText(txt)
+    }
+
+    let updateText = (txt) => {
         setText(txt)
         let numberOfWords = txt.trim().split(/\s+/).length
         let numberOfChars = txt.trim().length
@@ -32,6 +41,15 @@ export default function TextForm(props) {
         setNumWords(0)
         setNumChars(0)
     }
+
+    let handleCopy = () => {
+        navigator.clipboard.writeText(text)
+    }
+
+    let handleExtraSpaces = () => {
+        let txt = text.split(/\s+/)
+        updateText(txt.join(" ").trim())
+    }
     return (
         <>
         <div className="container">
@@ -41,6 +59,10 @@ export default function TextForm(props) {
             </div>
             <button className="btn btn-primary" onClick={handleUpClick}>Convert to Uppercase</button>
             <button className="btn btn-dark mx-3" onClick={handleLowClick}>Convert to LowerCase</button>
+            <button className="btn btn-primary mx-3" onClick={handleCopy}>Copy text</button>
+            <div className="my-3">
+            <button className="btn btn-outline-primary my-3" onClick={handleExtraSpaces}>Handle Extra Spaces</button>
+            </div>
             <div className="my-3">
             <button className="btn btn-outline-danger" onClick={handleClearField}>Clear</button>
             </div>
