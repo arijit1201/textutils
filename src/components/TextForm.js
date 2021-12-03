@@ -30,8 +30,9 @@ export default function TextForm(props) {
     let updateText = (txt) => {
         setText(txt)
         let numberOfWords = 0
-        if(txt.search("/^[ ]*/")!==-1)
-            numberOfWords = txt.trim().split(" ").length
+        let updatedTextArray = txt.trim().split(" ").filter(e => {return e===0 || e})
+        if(!(updatedTextArray.length===1 && updatedTextArray[0]===""))
+            numberOfWords = updatedTextArray.length
         let numberOfChars = txt.length
         setNumWords(numberOfWords)
         setNumChars(numberOfChars)
@@ -57,15 +58,17 @@ export default function TextForm(props) {
         <div className="container">
             <h1>{props.title}</h1>
             <div className="mb-3">
-                <textarea className="form-control" id="inputBox" rows="8" placeholder={sampletext} value={text} onChange={handleOnChange}></textarea>
+                <textarea className="form-control mx-3 my-1" id="inputBox" rows="8" placeholder={sampletext} value={text} onChange={handleOnChange}></textarea>
             </div>
-            <button className="btn btn-primary" onClick={handleUpClick}>Convert to Uppercase</button>
-            <button className="btn btn-dark mx-3" onClick={handleLowClick}>Convert to LowerCase</button>
-            <button className="btn btn-primary mx-3" onClick={handleCopy}>Copy text</button>
-            <div className="my-3">
+            <div className = "container-fluid">
+                <button className="btn btn-primary mx-1 my-1" onClick={handleUpClick}>Convert to Uppercase</button>
+                <button className="btn btn-dark mx-1 my-1" onClick={handleLowClick}>Convert to LowerCase</button>
+                <button className="btn btn-primary mx-1 my-1" onClick={handleCopy}>Copy text</button>
+            </div>
+            <div className="mx-1 my-3 container-fluid">
             <button className="btn btn-outline-primary my-3" onClick={handleExtraSpaces}>Handle Extra Spaces</button>
             </div>
-            <div className="my-3">
+            <div className="mx-1 my-3 container-fluid">
             <button className="btn btn-outline-danger" onClick={handleClearField}>Clear</button>
             </div>
         </div>
