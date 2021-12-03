@@ -30,7 +30,7 @@ export default function TextForm(props) {
     let updateText = (txt) => {
         setText(txt)
         let numberOfWords = 0
-        if(txt.search("/^\s*$/")!==-1)
+        if(txt.search("/^[ ]*/")!==-1)
             numberOfWords = txt.trim().split(" ").length
         let numberOfChars = txt.length
         setNumWords(numberOfWords)
