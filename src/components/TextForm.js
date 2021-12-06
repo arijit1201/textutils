@@ -53,12 +53,19 @@ export default function TextForm(props) {
         let txt = text.split(/\s+/)
         updateText(txt.join(" ").trim())
     }
+
+    let darkTextstyle = {
+        color: props.mode==='dark'?'white':'black'
+    }
     return (
         <>
-        <div className="container">
+        <div className="container-fluid" style={darkTextstyle}>
             <h1>{props.title}</h1>
             <div className="mb-3">
-                <textarea className="form-control mx-3 my-1" id="inputBox" rows="8" placeholder={sampletext} value={text} onChange={handleOnChange}></textarea>
+                <textarea className="form-control mx-3 my-1" style={{
+                    backgroundColor: props.mode==='dark'?'#343a40':'white',
+                    color: props.mode==='dark'?'white':'black'
+                }} id="inputBox" rows="8" placeholder={sampletext} value={text} onChange={handleOnChange}></textarea>
             </div>
             <div className = "container-fluid">
                 <button className="btn btn-primary mx-1 my-1" onClick={handleUpClick}>Convert to Uppercase</button>
@@ -66,13 +73,13 @@ export default function TextForm(props) {
                 <button className="btn btn-primary mx-1 my-1" onClick={handleCopy}>Copy text</button>
             </div>
             <div className="mx-1 my-3 container-fluid">
-            <button className="btn btn-outline-primary my-3" onClick={handleExtraSpaces}>Handle Extra Spaces</button>
+            <button className="btn btn-primary my-3" onClick={handleExtraSpaces}>Handle Extra Spaces</button>
             </div>
             <div className="mx-1 my-3 container-fluid">
-            <button className="btn btn-outline-danger" onClick={handleClearField}>Clear</button>
+            <button className="btn btn-danger" onClick={handleClearField}>Clear</button>
             </div>
         </div>
-        <div className="container my-4">
+        <div className="container my-4" style={darkTextstyle}>
             <h2>
                 Your text summary
             </h2>
