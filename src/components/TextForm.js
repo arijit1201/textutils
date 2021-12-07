@@ -9,12 +9,14 @@ export default function TextForm(props) {
         //console.log("UpperCase was clicked")
         let updatedText = text.toUpperCase()
         setText(updatedText)
+        props.showAlert("Converted to Upper Case","Success")
     }
 
     let handleLowClick = () => {
         //console.log("LowerCase was clicked")
         let updatedText = text.toLowerCase()
         setText(updatedText)
+        props.showAlert("Converted to Lower Case","Success")
     }
     let handleOnChange = (event) => {
         //console.log(text)
@@ -43,15 +45,20 @@ export default function TextForm(props) {
         setText("")
         setNumWords(0)
         setNumChars(0)
+        props.showAlert("CLeared!","Success")
     }
 
     let handleCopy = () => {
-        navigator.clipboard.writeText(text)
+        let copyText = text.select()
+        copyText.setSelectionRange(0, 99999)
+        navigator.clipboard.writeText(copyText)
+        props.showAlert("Copied to clipboard","Success")
     }
 
     let handleExtraSpaces = () => {
         let txt = text.split(/\s+/)
         updateText(txt.join(" ").trim())
+        props.showAlert("Extra Spaces trimmed","Success")
     }
 
     let darkTextstyle = {
@@ -63,7 +70,7 @@ export default function TextForm(props) {
             <h1>{props.title}</h1>
             <div className="mb-3">
                 <textarea className="form-control mx-3 my-1" style={{
-                    backgroundColor: props.mode==='dark'?'#343a40':'white',
+                    backgroundColor: props.mode==='dark'?'#0b1826':'white',
                     color: props.mode==='dark'?'white':'black'
                 }} id="inputBox" rows="8" placeholder={sampletext} value={text} onChange={handleOnChange}></textarea>
             </div>
@@ -87,7 +94,7 @@ export default function TextForm(props) {
             <p>Your average reading time will be {numWords * 0.008} minutes</p>
 
             <h2>Preview</h2>
-            <p>{text}</p>
+            <p id="previewText">{text.length>0?text:"Enter Text to preview"}</p>
         </div>
         </>
     )
