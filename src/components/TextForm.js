@@ -49,10 +49,15 @@ export default function TextForm(props) {
     }
 
     let handleCopy = () => {
-        let copyText = text.select()
-        copyText.setSelectionRange(0, 99999)
-        navigator.clipboard.writeText(copyText)
-        props.showAlert("Copied to clipboard","Success")
+        const copyText = document.getElementById("inputBox")//text.select()
+        console.log(copyText.innerHTML)
+        if(copyText.innerHTML.length>0)
+        {
+            copyText.select()
+            copyText.setSelectionRange(0, 99999)
+            navigator.clipboard.writeText(copyText.innerHTML)
+            //document.execCommand('copy');
+            props.showAlert("Copied to clipboard","Success")}
     }
 
     let handleExtraSpaces = () => {
