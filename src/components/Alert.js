@@ -7,7 +7,7 @@ let Alert = (props) => {
     return (
         props.alert && <div className={`alert alert-${alertType} alert-dismissible fade show`} role="alert">
             <strong>{props.alert.typ}:</strong>{props.alert.msg}
-            <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            {/* <button type="button" className="btn-close" onClick = {() => props.showAlert(null)}  aria-label="Close"></button> */}
         </div>
     )
 }
