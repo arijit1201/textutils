@@ -43,6 +43,7 @@ function App() {
       <div className="container my-3">
         <TextForm title="Input Your text Here" mode={mode} showAlert = {showAlert}/>
         {/* <About/> */}
+        <iframe title="spotify-frame" src="https://open.spotify.com/embed/track/4AEjLDHRYfbnqQtnVOBivl?utm_source=generator" width="100%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
       </div>
 
     </>
